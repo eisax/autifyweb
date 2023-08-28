@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Aoutify - Dashboard</title>
+
+        <!-- Custom fonts for this template-->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+        
+
+        <style>
+
+            #loading-container {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                text-align: center;
+            }
+
+            .loading-spinner {
+                border: 16px solid #f3f3f3;
+                border-top: 16px solid #3498db;
+                border-radius: 50%;
+                width: 120px;
+                height: 120px;
+                animation: spin 2s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .loading-text {
+                font-size: 24px;
+                margin-top: 16px;
+            }
+        </style>
+
+    </head>
+
+    <body id="page-top">
+
+        <div id="loading-container" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Training Model...</p>
+        </div>
+
+        <!-- Page Wrapper -->
+        <div
+            id="wrapper">
+
+            <!-- Sidebar -->
+            <ul
+                class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+
+                    <div class="sidebar-brand-text mx-3">Aoutify
+                        <sub>ai</sub>
+                    </div>
+                </a>
+
+                <!-- Divider -->
+                <hr
+                class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" onclick="showDashboard(1)">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Text Classification
+                </div>
+
+
+                <li class="nav-item ">
+                    <a class="nav-link" onclick="showDashboard(2)">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Models</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showDashboard(3)">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Training</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showDashboard(5)">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Notebook</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showDashboard(6)">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Trash</span>
+                    </a>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+            </ul>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div
+                id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Topbar -->
+                <nav
+                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+
+
+                    <!-- Topbar Navbar -->
+                    <ul
+                        class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li
+                            class="nav-item dropdown no-arrow mx-1">
+
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li
+                            class="nav-item dropdown no-arrow mx-1">
+
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Kudah Ndhlovu</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modelinfomodal">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Main Content -->
+                <div
+                    id="content " class="fixer-height">
+
+
+                    <!-- ======================================================DASHBAORD DATA -->
+                    <div
+                        id="dashboard_item1" class="container-fluid dashboard_item active">
+
+
+                        <!-- Content Row -->
+                        <div
+                            class="row">
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Trained Models</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">8</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Deleted Models</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">16</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Failed Models</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">16</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Progress Models</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">16</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Content Row -->
+
+                        <div
+                            class="row">
+
+                            <!-- Area Chart -->
+                            <div class="col-xl-8 col-lg-7">
+                                <div
+                                    class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">sample neural network</h6>
+
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas id="myAreaChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pie Chart -->
+                            <div class="col-xl-4 col-lg-5">
+                                <div
+                                    class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Programming Languages</h6>
+
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4 pb-2">
+                                            <canvas id="myPieChart"></canvas>
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-primary"></i>
+                                                Python
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-success"></i>
+                                                Javascript
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-info"></i>
+                                                C++
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Row -->
+                        <div
+                            class="row">
+
+                            <!-- Content Column -->
+                            <div class="col-lg-6 mb-4"></div>
+
+                            <div class="col-lg-6 mb-4"></div>
+                        </div>
+
+                    </div>
+                    <!-- ======================================================DASHBAORD DATA -->
+
+                    <!-- ======================================================MODELS DATA -->
+                    <div id="dashboard_item2" class="container-fluid  dashboard_item ">
+
+
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-gray-600">Created Models
+                            </h6>
+                        </div>
+
+
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Models In Production
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Stage</th>
+                                                <th>Dialogue Size</th>
+                                                <th>Owner</th>
+                                                <th>Modified Date</th>
+                                                <th>Tags</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Stage</th>
+                                                <th>Dialogue Size</th>
+                                                <th>Owner</th>
+                                                <th>Modified Date</th>
+                                                <th>Tags</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody id="tableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body row spacer-wrapper">
+
+                            <a href="#" class="btn btn-success btn-icon-split " data-toggle="modal" data-target="#modelinfoformmodal">
+
+                                <span class="text">Create New Model</span>
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <!-- ======================================================MODELS DATA -->
+                    <!-- ======================================================TRAINING DATA -->
+                    <div id="dashboard_item3" class="container-fluid dashboard_item ">
+
+                        
+                        <div  class="center_me w-100   mb-4">
+
+                            <div class="row w-100 justify-content-lg-around flex-row align-content-center">
+                                <div class=" w-40 ">
+                                    <div class="modal-content w-100 flex-fill align-content-center">
+                                        <div class="modal-body w-100">
+                                            <form class="w-100">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="modelId">Model Id</label>
+                                                            <input type="text" class="form-control" id="modelIdField" value="KDF86-up">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="name">Name</label>
+                                                            <input type="text" class="form-control" id="name" value="Kudah Ndhlovu" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="modifiedDate">Modified</label>
+                                                            <input type="text" class="form-control" id="modifiedDate" value="13/Sept/2023" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="state">State</label>
+                                                            <input type="text" class="form-control" id="state" value="false" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="version">Version</label>
+                                                            <input type="text" class="form-control" id="version" value="1.0.0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="batchSize">Batchsize</label>
+                                                            <input type="text" class="form-control" id="batchSize" value="5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="epochs">Epochs</label>
+                                                            <input type="text" class="form-control" id="epochs" value="200">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="verbose">Verbose</label>
+                                                            <input type="text" class="form-control" id="verbose" value="1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="learningRate">Learning rate</label>
+                                                            <input type="text" class="form-control" id="learningRate" value="0.01">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="momentum">Momentum</label>
+                                                            <input type="text" class="form-control" id="momentum" value="0.9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="dialogueSize">Dialogue Size</label>
+                                                            <input type="text" class="form-control" id="dialogueSize" value="0" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="description">Category</label>
+                                                            <input type="text" class="form-control" id="description" value="conversational">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                            <div class="row flex-row  justify-content-md-around">
+                                                <div class="card-body">
+                                                    <a href="#" class="btn btn-warning btn-icon-split " onclick="trainModel()">
+
+                                                        <span class="text">Retrain Model</span>
+                                                    </a>
+
+                                                </div>
+                                                <div class="card-body">
+
+                                                    <input type="file" id="selectFiles" value="Import" style="width: 100px;"/><br/>
+
+                                                </div>
+                                                <div class="card-body">
+                                                    <a href="#" class="btn btn-success btn-icon-split " data-toggle="modal" data-target="#dialogueCreationModal">
+
+                                                        <span class="text">Dialogue Training</span>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row flex-row align-content-center justify-content-center"></div>
+                                </div>
+                                <div class="card w-50 ">
+                                    <div class="modal-body w-100">
+                                        <form>
+                                            <button class="close" type="button" onclick="clearDialogue()" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <div class="form-group w-100">
+                                                <label for="jsonData">Training Dialogues</label>
+
+
+                                                <div class="card-body">
+                                                    <div class=" ">
+                                                        <textarea class="note-content w-100" rows="20" id="jsonTextarea" placeholder="Dialogue Flow"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- ======================================================TRAINING DATA -->
+                    <!-- ======================================================TESTING DATA -->
+                    <div id="dashboard_item4" class="container-fluid  dashboard_item "></div>
+                    <!-- ======================================================TESTING DATA -->
+                    <!-- ======================================================NOTEBOOK DATA -->
+                    <div id="dashboard_item5" class="container-fluid dashboard_item">
+                        <div class="row">
+                            <div class="col-md-12 paddings">
+                                <h1>Notebook</h1>
+                                <button class="btn btn-primary" id="addNoteButton">Add Write Up</button>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <input type="text" class="note-header" placeholder="Writeup Header">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="note">
+                                            <textarea class="note-content w-100" rows="15" placeholder="Writeup Content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======================================================NOTEBOOK DATA -->
+                    <!-- ======================================================TRASH DATA -->
+                    <div id="dashboard_item6" class="container-fluid  dashboard_item ">
+                        <div class="center_me  mb-4">
+
+                            <div class="card-body">
+                                <a href="#" class="btn btn-primary btn-circle btn-lg">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+
+                            </div>
+
+                            <h6 class="m-0 fontawesome-free text-primary text-gray-800">Currently No Models can be restored
+                            </h6>
+
+                            <div class="card-body">
+                                <a href="#" class="btn btn-danger btn-icon-split " data-toggle="modal" data-target="#trashModal">
+
+                                    <span class="text">Clean Trash</span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- ======================================================TRASH DATA -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Experimental | Copyright &copy; aoutify.ai</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Logout to exit current session</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Successful</h5>
+                        <button class="close" type="button" data-dismiss="modal" onclick="displayModal(false)" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Model created successfuly</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" onclick="displayModal(false)" data-dismiss="modal">EXIT</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- NO TRASH AVAAILABLE-->
+        <div class="modal fade" id="trashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Trash is Aready Empty?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Done</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIALOGUE CREATION BOX-->
+        <div class="modal fade" id="dialogueCreationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Conversations List</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="modelId">Model Id</label>
+                            <input type="text" class="form-control" id="modelId" value="KDF86-up">
+                        </div>
+                        <div class="form-group">
+                            <label for="modelId">Dialogue Id</label>
+                            <input type="text" class="form-control" id="dialogueIdField" value="greeting">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="question">Question</label>
+                                    <textarea class="form-control" id="questionField" rows="5" placeholder="Enter question here"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="answer">Answer</label>
+                                    <textarea class="form-control" id="answerField" rows="5" placeholder="Enter answer here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">NB : To add multiple conversations, seperate the dialogue with a comma e.g Hi,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            How are you?</div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-success" type="button" data-dismiss="modal" onclick="saveJSONFile()">Create Dialogue</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="changeModelModal" tabindex="-1" role="dialog" aria-labelledby="changeModelModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changeModelModalLabel">Change Model</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">KN0012KM</h6>
+                            <h6 class="collapse-header">KN0013KM</h6>
+                            <h6 class="collapse-header">KN0014KM</h6>
+                            <h6 class="collapse-header">KN0015KM</h6>
+                            <h6 class="collapse-header">KN0016KM</h6>
+                            <h6 class="collapse-header">KN0017KM</h6>
+                            <h6 class="collapse-header">KN0018KM</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modelinfoformmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Model Data File</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="modelId">Model Id</label>
+                                <input type="text" class="form-control" id="modelId" value="KDF86-up">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" value="Kudah Ndhlovu" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="modifiedDate">Modified</label>
+                                <input type="text" class="form-control" id="modifiedDate" value="13/Sept/2023" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" id="state" value="false" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="dialogueSize">Dialogue Size</label>
+                                <input type="text" class="form-control" id="dialogueSize" value="0" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input type="text" class="form-control" id="description" value="no description">
+                            </div>
+                            <div class="form-group">
+                                <label for="version">Version</label>
+                                <input type="text" class="form-control" id="version" value="1.0.0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="epochs">Epochs</label>
+                                <input type="text" class="form-control" id="epochs" value="200">
+                            </div>
+                            <div class="form-group">
+                                <label for="batchSize">Batchsize</label>
+                                <input type="text" class="form-control" id="batchSize" value="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="verbose">Verbose</label>
+                                <input type="text" class="form-control" id="verbose" value="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="learningRate">Learning rate</label>
+                                <input type="text" class="form-control" id="learningRate" value="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label for="momentum">Momentum</label>
+                                <input type="text" class="form-control" id="momentum" value="0.9">
+                            </div>
+                        </form>
+                        <div class="card-body row spacer-wrapper">
+                            <a href="#" class="btn btn-danger btn-icon-split " data-toggle="modal" data-target="#dialogueCreationModal">
+
+                                <span class="text">Delete Model</span>
+                            </a>
+                            <a href="#" class="btn btn-success btn-icon-split " onclick="saveJSONFile()">
+
+                                <span class="text">Create Model</span>
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function showDashboard(dashboardNumber) { // Hide all dashboards
+                var dashboards = document.getElementsByClassName('dashboard_item');
+                for (var i = 0; i < dashboards.length; i++) {
+                    dashboards[i].classList.remove('active');
+                }
+
+                // Show the selected dashboard
+                var dashboard = document.getElementById('dashboard_item' + dashboardNumber);
+                dashboard.classList.add('active');
+            }
+
+            var jsonData = [
+                {
+                    "Id": 1,
+                    "Stage": "staging",
+                    "DialogueSize": 10,
+                    "Owner": "John Doe",
+                    "ModifiedDate": "2023-08-10",
+                    "Tags": "keras"
+                }, {
+                    "Id": 2,
+                    "Stage": "production",
+                    "DialogueSize": 8,
+                    "Owner": "Jane Smith",
+                    "ModifiedDate": "2023-04-11",
+                    "Tags": "keras"
+                }, {
+                    "Id": 3,
+                    "Stage": "deleted",
+                    "DialogueSize": 1024,
+                    "Owner": "Jodan Maris",
+                    "ModifiedDate": "2023-08-11",
+                    "Tags": "keras"
+                }
+                // Add more objects as needed
+            ];
+
+
+            // Access the table body element
+            var tableBody = document.getElementById('tableBody');
+
+            // Iterate over the data and create table rows and cells
+            for (var i = 0; i < jsonData.length; i++) {
+                var row = document.createElement('tr');
+
+                // Populate the table cells with data
+                var cell1 = document.createElement('td');
+                cell1.textContent = jsonData[i].Id;
+                row.appendChild(cell1);
+
+                var cell2 = document.createElement('td');
+                cell2.textContent = jsonData[i].Stage;
+                row.appendChild(cell2);
+
+                var cell3 = document.createElement('td');
+                cell3.textContent = jsonData[i].DialogueSize;
+                row.appendChild(cell3);
+
+                var cell4 = document.createElement('td');
+                cell4.textContent = jsonData[i].Owner;
+                row.appendChild(cell4);
+
+                var cell5 = document.createElement('td');
+                cell5.textContent = jsonData[i].ModifiedDate;
+                row.appendChild(cell5);
+
+                var cell6 = document.createElement('td');
+                cell6.textContent = jsonData[i].Tags;
+                row.appendChild(cell6);
+
+                // Append the table row to the table body
+                tableBody.appendChild(row);
+
+
+            }
+        </script>
+
+        <script>
+            // Get the textarea element
+            const textarea = document.getElementById('jsonTextarea');
+
+            // Add an event listener for the 'input' event
+            textarea.addEventListener('input', function () {
+                try { // Get the value of the textarea
+                    const jsonString = this.value;
+
+                    // Parse the JSON string to an object
+                    const jsonObject = JSON.parse(jsonString);
+
+                    // Format the JSON object with indentation
+                    const formattedJsonString = JSON.stringify(jsonObject, null, 4);
+
+                    // Set the formatted JSON string back to the textarea
+                    this.value = formattedJsonString;
+                } catch (error) { // If there's an error in parsing the JSON, do nothing
+                }
+            });
+        </script>
+
+
+        <script>
+
+
+            function LoadingContainer(show) {
+
+                var loadingContainer = document.getElementById('loading-container');
+
+
+                loadingContainer.style.display = show ? 'flex' : 'none';
+
+
+            }
+
+
+            var dialogueConversationJson = [];
+
+
+            function updateJsonTextarea() {
+                const jsonTextarea = document.getElementById('jsonTextarea');
+                jsonTextarea.value = JSON.stringify(dialogueConversationJson, null, 2);
+            }
+
+            function clearDialogue() {
+                dialogueConversationJson = [];
+                updateJsonTextarea();
+            }
+
+
+            function saveJSONFile() {
+                const dialogueId = document.getElementById('dialogueIdField').value;
+                const question = document.getElementById('questionField').value;
+                const answer = document.getElementById('answerField').value;
+
+
+                const existingDialogue = dialogueConversationJson.find(obj => obj.tag === dialogueId);
+
+
+                if (dialogueId != "") {
+                    if (existingDialogue) {
+                        existingDialogue.patterns.push(question);
+                        existingDialogue.answer.push(answer);
+                    } else {
+                        const data = {
+                            "tag": dialogueId,
+                            "patterns": [question],
+                            "answer": [answer],
+                            "context": [""]
+                        };
+                        dialogueConversationJson.push(data);
+                    }
+                }
+                updateJsonTextarea();
+            }
+
+            function displayModal(show) {
+                var modal = document.getElementById('successModal');
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+                modal.style.display = show ? 'block' : 'none';
+            }
+
+
+            function trainModel() {
+
+                const modelId = document.getElementById('modelIdField').value;
+                const jsonData = dialogueConversationJson;
+
+
+                LoadingContainer(true);
+
+                if (modelId != "" || jsonData != []) {
+
+                    jsonPayload = {
+                        "intents": jsonData
+                    }
+                    const data = {
+                        "userid": modelId,
+                        "trainingdata": jsonPayload
+                    }
+
+                    fetch('http://192.168.88.120:3000/trainmodel', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }).then(response => {
+                        const contentType = response.headers.get('content-type');
+                        if (! contentType || ! contentType.includes('application/json')) {}
+                        return response.json();
+                    }).then(data => {
+
+                        const response = data;
+                        displayModal(true);
+                        LoadingContainer(false);
+                    }).catch(error => {
+                        console.error('Error', error);
+                        LoadingContainer(false);
+                    });
+                }
+
+
+            }
+
+
+            function handleFileSelect(event) {
+                var files = event.target.files;
+                console.log(files);
+                if (files.length <= 0) {
+                    return false;
+                }
+
+                dialogueConversationJson = "enter correct json data";
+                        updateJsonTextarea();
+
+                var fr = new FileReader();
+
+                fr.onload = function (e) {
+                    console.log(e);
+                    var result = JSON.parse(e.target.result);
+
+
+                    if (result.hasOwnProperty('tag')&&result.hasOwnProperty('responses')&&result.hasOwnProperty('patterns')) {
+                        dialogueConversationJson = result;
+                        updateJsonTextarea();
+                    } 
+                    }
+                    
+                    
+
+                fr.readAsText(files.item(0));
+            }
+
+            document.getElementById('selectFiles').addEventListener('change', handleFileSelect);
+        </script>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
+
+    </body>
+
+</html>

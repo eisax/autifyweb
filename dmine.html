@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .dashboard {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .menu {
+      margin-bottom: 20px;
+    }
+
+    .menu button {
+      padding: 10px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu">
+    <button onclick="showDashboard(1)">Dashboard 1</button>
+    <button onclick="showDashboard(2)">Dashboard 2</button>
+    <button onclick="showDashboard(3)">Dashboard 3</button>
+  </div>
+
+  <div id="dashboard1" class="dashboard active">
+    <h1>Dashboard 1</h1>
+    <!-- Add your content for Dashboard 1 -->
+  </div>
+
+  <div id="dashboard2" class="dashboard">
+    <h1>Dashboard 2</h1>
+    <!-- Add your content for Dashboard 2 -->
+  </div>
+
+  <div id="dashboard3" class="dashboard">
+    <h1>Dashboard 3</h1>
+    <!-- Add your content for Dashboard 3 -->
+  </div>
+
+  <script>
+    function showDashboard(dashboardNumber) {
+      // Hide all dashboards
+      var dashboards = document.getElementsByClassName('dashboard');
+      for (var i = 0; i < dashboards.length; i++) {
+        dashboards[i].classList.remove('active');
+      }
+
+      // Show the selected dashboard
+      var dashboard = document.getElementById('dashboard' + dashboardNumber);
+      dashboard.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>
